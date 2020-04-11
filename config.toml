@@ -1,0 +1,23 @@
+baseURL = "http://jeremyvincent.com/"
+languageCode = "en"
+title = "Jeremy Vincent's Website"
+theme = "beautifulhugo"
+
+enableGitInfo = true
+[Params]
+  commit = "https://github.com/jvincentnz/jvincent-website/tree/"
+
+[Author]
+  name = "Jeremy Vincent"
+  website = "http://jeremyvincent.com/"
+  email = "jeremy.vincent@gmail.com"
+  facebook = "jeremy.vincent.129794"
+  github = "jvincentnz"
+  #gitlab = "username"
+  #bitbucket = "username"
+  twitter = "jvincentnz"
+  linkedin = "vincentjeremy"
+
+[permalinks]
+  posts = "/:year/:month/:title/"
+
