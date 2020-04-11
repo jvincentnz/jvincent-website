@@ -33,7 +33,7 @@ These are the steps I followed to create a GitHub repository and setup my websit
 
 1. Edit the `config.toml` file to have the following content:
 
-		baseURL = "http://jeremyvincent.com/"
+		baseURL = "https://jeremyvincent.com/"
 		languageCode = "en"
 		title = "Jeremy Vincent's Website"
 	
@@ -45,7 +45,7 @@ These are the steps I followed to create a GitHub repository and setup my websit
 	
 		[Author]
 		  name = "Jeremy Vincent"
-		  website = "http://jeremyvincent.com/"
+		  website = "https://jeremyvincent.com/"
 		  email = "jeremy.vincent@gmail.com"
 		  facebook = "jeremy.vincent.129794"
 		  github = "jvincentnz"

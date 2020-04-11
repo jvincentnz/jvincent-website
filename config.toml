@@ -1,4 +1,4 @@
-baseURL = "http://jeremyvincent.com/"
+baseURL = "https://jeremyvincent.com/"
 languageCode = "en"
 title = "Jeremy Vincent's Website"
 theme = "beautifulhugo"
@@ -9,7 +9,7 @@ enableGitInfo = true
 
 [Author]
   name = "Jeremy Vincent"
-  website = "http://jeremyvincent.com/"
+  website = "https://jeremyvincent.com/"
   email = "jeremy.vincent@gmail.com"
   facebook = "jeremy.vincent.129794"
   github = "jvincentnz"
