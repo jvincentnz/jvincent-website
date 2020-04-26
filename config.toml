@@ -1,15 +1,15 @@
-baseURL = "https://jeremyvincent.com/"
+baseURL = "https://dev.jeremyvincent.com/"
 languageCode = "en"
-title = "Jeremy Vincent's Website"
+title = "[DEV] Jeremy Vincent's Website"
 theme = "beautifulhugo"
 
 enableGitInfo = true
 [Params]
-  commit = "https://github.com/jvincentnz/jvincent-website/tree/"
+  commit = "https://github.com/jvincentnz/jvincent-website/tree/dev/"
 
 [Author]
   name = "Jeremy Vincent"
-  website = "https://jeremyvincent.com/"
+  website = "https://dev.jeremyvincent.com/"
   email = "jeremy.vincent@gmail.com"
   facebook = "jeremy.vincent.129794"
   github = "jvincentnz"
