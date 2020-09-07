@@ -1,24 +1,29 @@
 ---
 title: "My First Post"
 date: 2020-04-11T15:01:31+12:00
+lastmod: 2020-09-07
 draft: false
+description: My first post using Hugo as the static site generator.
+categories:
+- Website
+- Hugo
 ---
 
 This website was created using the [Hugo](https://gohugo.io/) static site generator.
 
 These are the steps I followed to create a GitHub repository and setup my website using Hugo:
 
-1. From a macOS terminal I installed Hugo using [Homebrew](http://brew.sh/) and then setup a basic Hugo website with the [beautifulhugo](https://themes.gohugo.io/beautifulhugo/) theme:
+1. From a macOS terminal I installed Hugo using [Homebrew](http://brew.sh/) and then setup a basic Hugo website with the [beautifulhugo](https://themes.gohugo.io/beautifulhugo/) theme by running:
 
-		brew install hugo
+	```bash
+	brew install hugo
 
-		hugo new site jvincent-website
+	hugo new site jvincent-website
 		
-		cd jvincent-website
-		git init 
-		git-secrets --install
-		git submodule add https://github.com/halogenica/beautifulhugo.git themes/beautifulhugo
-
+	cd jvincent-website
+	git init 
+	git-secrets --install
+	git submodule add https://github.com/halogenica/beautifulhugo.git themes/beautifulhugo
 1. Create a `.gitignore` file to have the following content:
 
 		# macOS Internals
@@ -59,27 +64,36 @@ These are the steps I followed to create a GitHub repository and setup my websit
 
 1. Create the first post by running the following from a macOS terminal:
 
-		hugo new posts/my-first-post.md
-
+	```bash
+	hugo new posts/my-first-post.md
 1. Edit `posts/my-first-post.md` with your first post content using a [Markdown](https://daringfireball.net/projects/markdown/syntax) editor!
 
 1. Test your new static website on your local computer by running the following from the macOS terminal to start the Hugo webserver with draft content enabled:
 
-		hugo server -D
-
+	```bash
+	hugo server -D
 1. And then browse to `http://localhost:1313/` in your web browser.
 
 1. After you have finished testing your website, press `Control-C` to stop the Hugo webserver.
 
+1. Update the `draft: true` field in your first post `posts/my-first-post.md` file to be `draft: false` so it will be published when running `hugo` without the draft content enabled option:
+
+		---
+		title: "My First Post"
+		date: 2020-04-11T15:01:31+12:00
+		draft: false
+		---
+
 1. Commit your website content to your GitHub repository by running the following from the macOS terminal:
-		
-		git add .
-		git commit -m "Initial commit"
-		git remote add origin https://github.com/jvincentnz/jvincent-website.git
-		git push -u origin master
-		
-1. Create the static website in the `public/` directory by running the following from the macOS terminal:
+	
+	```bash
+	git add .
+	git commit -m "Initial commit"
+	git remote add origin https://github.com/jvincentnz/jvincent-website.git
+	git push -u origin master
+1. Create the static website content in the `public/` directory by running the following from the macOS terminal:  
+	**NOTE:** Only content marked *non-draft* will be generated.
 
-		hugo -D
-
+	```bash
+	hugo
 1. Now you can publish your static website from the `public/` directory to your S3 website enabled bucket.
