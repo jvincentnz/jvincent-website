@@ -110,7 +110,7 @@ These are the steps I followed to create a GitHub repository and setup my websit
 		---
 		title: "My First Post"
 		date: 2020-04-11T15:01:31+12:00
-		draft: false
+		draft: false![](data:image/jpeg;base64,LS0tCnRpdGxlOiAiQWJvdXQiCmRhdGU6IDIwMjAtMDktMDlUMjA6MDM6MjIrMTI6MDAKZHJhZnQ6IHRydWUKZGVzY3JpcHRpb246IEFib3V0IHBhZ2UgZm9yIHRoZSB3ZWJzaXRlLgotLS0KCkplcmVteSBWaW5jZW50IGlzIGEgeHh4LgoKe3s8IGRldGFpbHMgIlRoaXMgaXMgdGhlIGRldGFpbHMgdGl0bGUgKGNsaWNrIHRvIGV4cGFuZCkiID59fQpUaGlzIGlzIHRoZSBjb250ZW50IChoaWRkZW4gdW50aWwgY2xpY2tlZCkuCnt7PCAvZGV0YWlscyA+fX0KCnt7PCBoaWdobGlnaHQgYmFzaCAibGluZW5vcz10YWJsZSxobF9saW5lcz0yIDE1LTE3LGxpbmVub3N0YXJ0PTE5OSIgPn19Ci8vIC4uLiBjb2RlCnt7PCAvaGlnaGxpZ2h0ID59fQoKe3s8IGNvbHVtbnMgPn19ClRoaXMgaXMgY29sdW1uIDEuCnt7PCBjb2x1bW4gPn19ClRoaXMgaXMgY29sdW1uIDIuCnt7PCBlbmRjb2x1bW5zID59fQoKCmBgYGJhc2gge1dpdGhIYXJkV3JhcHM9dHJ1ZX0KaHVnbyBnZW4gY2hyb21hc3R5bGVzIC0tc3R5bGU9bW9ub2thaSA+IHN5bnRheC5jc3MgCmBgYAo=)
 		---
 
 1. Commit your website content to your GitHub repository by running the following from the macOS terminal:
