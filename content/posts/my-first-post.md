@@ -4,9 +4,9 @@ date: 2020-04-11T15:01:31+12:00
 lastmod: 2020-09-07
 draft: false
 description: My first post using Hugo as the static site generator.
-categories:
-- Website
-- Hugo
+tags:
+- website
+- hugo
 ---
 
 This website was created using the [Hugo](https://gohugo.io/) static site generator.
@@ -23,7 +23,7 @@ These are the steps I followed to create a GitHub repository and setup my websit
 	cd jvincent-website
 	git init 
 	git-secrets --install
-	git submodule add https://github.com/halogenica/beautifulhugo.git themes/beautifulhugo
+	git submodule add https://github.com/halogenica/beautifulhugo.git themes/beautifulhugo	
 1. Create a `.gitignore` file to have the following content:
 
 		# macOS Internals
@@ -41,13 +41,38 @@ These are the steps I followed to create a GitHub repository and setup my websit
 		baseURL = "https://jeremyvincent.com/"
 		languageCode = "en"
 		title = "Jeremy Vincent's Website"
-	
 		theme = "beautifulhugo"
+		
+		pygmentsUseClasses = true
+		pygmentsCodeFences = true
+		pygmentsCodefencesGuessSyntax = true
+		#pygmentsStyle = "monokai"
+		#pygmentsUseClassic = true
+		#pygmentOptions = "linenos=inline"
+		#disqusShortname = "XXX"
+		#googleAnalytics = "XXX"
 	
 		enableGitInfo = true
 		[Params]
 		  commit = "https://github.com/jvincentnz/jvincent-website/tree/"
-	
+		  # homeTitle = "Beautiful Hugo Theme" # Set a different text for the header on the home page
+		  # subtitle = "Build a beautiful and simple website in minutes"
+		  mainSections = ["post","posts"]
+		  # logo = "img/avatar-icon.png" # Expecting square dimensions
+		  # favicon = "img/favicon.ico"
+		  # dateFormat = "January 1, 2020"
+		  # commit = false
+		  rss = true
+		  # comments = true
+		  readingTime = true
+		  wordCount = true
+		  useHLJS = false
+		  socialShare = true
+		  # delayDisqus = true
+		  showRelatedPosts = true
+		  # hideAuthor = true
+		  # gcse = "012345678901234567890:abcdefghijk" # Get your code from google.com/cse. Make sure to go to "Look and Feel" and change Layout to "Full Width" and Theme to "Classic"
+		
 		[Author]
 		  name = "Jeremy Vincent"
 		  website = "https://jeremyvincent.com/"
@@ -62,6 +87,10 @@ These are the steps I followed to create a GitHub repository and setup my websit
 		[permalinks]
 		  posts = "/:year/:month/:title/"
 
+1. Run the following from a macOS terminal to [Generate Syntax Highlighter CSS](https://gohugo.io/content-management/syntax-highlighting/#generate-syntax-highlighter-css) for Chroma using Hugo with the `monokai` [style](https://xyproto.github.io/splash/docs/all.html):
+	
+	```bash
+	hugo gen chromastyles --style=monokai > syntax.css
 1. Create the first post by running the following from a macOS terminal:
 
 	```bash
