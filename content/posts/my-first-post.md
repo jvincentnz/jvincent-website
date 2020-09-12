@@ -90,7 +90,8 @@ These are the steps I followed to create a GitHub repository and setup my websit
 1. Run the following from a macOS terminal to [Generate Syntax Highlighter CSS](https://gohugo.io/content-management/syntax-highlighting/#generate-syntax-highlighter-css) for Chroma using Hugo with the `monokai` [style](https://xyproto.github.io/splash/docs/all.html):
 	
 	```bash
-	hugo gen chromastyles --style=monokai > syntax.css
+	mkdir static/css
+	hugo gen chromastyles --style=monokai > static/css/syntax.css
 1. Create the first post by running the following from a macOS terminal:
 
 	```bash
