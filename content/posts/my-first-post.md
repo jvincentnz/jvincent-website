@@ -13,7 +13,7 @@ This website was created using the [Hugo](https://gohugo.io/) static site genera
 
 These are the steps I followed to create a GitHub repository and setup my website using Hugo:
 
-1. From a macOS terminal I installed Hugo using [Homebrew](http://brew.sh/) and then setup a basic Hugo website with the [beautifulhugo](https://themes.gohugo.io/beautifulhugo/) theme by running:
+1. From a macOS terminal I installed Hugo using [Homebrew](http://brew.sh/) and then setup a basic Hugo website with my [fork](https://github.com/jvincentnz/beautifulhugo) of the [beautifulhugo](https://themes.gohugo.io/beautifulhugo/) theme by running:
 
 	```bash
 	brew install hugo
@@ -23,7 +23,7 @@ These are the steps I followed to create a GitHub repository and setup my websit
 	cd jvincent-website
 	git init 
 	git-secrets --install
-	git submodule add https://github.com/halogenica/beautifulhugo.git themes/beautifulhugo	
+	git submodule add https://github.com/jvincentnz/beautifulhugo.git themes/beautifulhugo
 1. Create a `.gitignore` file to have the following content:
 
 		# macOS Internals
