@@ -1,0 +1,44 @@
+{
+  "Comment": "Create R53 DNS records for DNS validation of the jeremyvincent.com ACM certificate for the jeremyvincent.com. domain in the jeremyvincent-prod account",
+  "Changes": [
+    {
+      "Action": "CREATE",
+      "ResourceRecordSet": {
+        "Name": "_c19dc234dd7c683e397588055c4bd9ea.jeremyvincent.com.",
+        "Type": "CNAME",
+        "TTL": 1800,
+        "ResourceRecords": [
+          {
+            "Value": "_2f786c052ea0a4dede819fa161e05aa7.wggjkglgrm.acm-validations.aws."
+          }
+        ]
+      }
+    },
+    {
+      "Action": "CREATE",
+      "ResourceRecordSet": {
+        "Name": "_83b2766e4e1a3d0ef0181a156dff84df.www.jeremyvincent.com.",
+        "Type": "CNAME",
+        "TTL": 1800,
+        "ResourceRecords": [
+          {
+            "Value": "_319acc2836901aba6a358be7ae62011c.wggjkglgrm.acm-validations.aws."
+          }
+        ]
+      }
+    },
+    {
+      "Action": "CREATE",
+      "ResourceRecordSet": {
+        "Name": "_9cf814487b9f5addf7b80063c9ca1706.cdn.jeremyvincent.com.",
+        "Type": "CNAME",
+        "TTL": 1800,
+        "ResourceRecords": [
+          {
+            "Value": "_30fb7b4e608a32c699e2d32a4d0ab8f9.wggjkglgrm.acm-validations.aws."
+          }
+        ]
+      }
+    }
+  ]
+}
