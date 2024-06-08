@@ -1,8 +1,10 @@
 baseURL = "https://jeremyvincent.com/"
 DefaultContentLanguage = "en"
 title = "Jeremy Vincent's Website"
+# Using theme as git submodule
 theme = "beautifulhugo"
-
+# Or when using theme as hugo module
+# theme = "github.com/halogenica/beautifulhugo"
 pygmentsUseClasses = true
 pygmentsCodeFences = true
 pygmentsCodefencesGuessSyntax = true
@@ -33,11 +35,17 @@ enableGitInfo = true
   showRelatedPosts = true
   # hideAuthor = true
   # gcse = "012345678901234567890:abcdefghijk" # Get your code from google.com/cse. Make sure to go to "Look and Feel" and change Layout to "Full Width" and Theme to "Classic"
+  # disclaimerText = "All opinions expressed are my own."
+
+
+[[Params.Author]]
+  name = "Jeremy Vincent"
+  email = "jeremy.vincent@gmail.com"
 
 [Author]
-  name = "Jeremy Vincent"
+  # name = "Jeremy Vincent"
   website = "https://jeremyvincent.com/"
-  email = "jeremy.vincent@gmail.com"
+  # email = "jeremy.vincent@gmail.com"
   facebook = "jeremy.vincent.129794"
   github = "jvincentnz"
   #gitlab = "username"
