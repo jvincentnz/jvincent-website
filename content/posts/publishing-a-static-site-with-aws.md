@@ -474,3 +474,167 @@ See the below links for more information:
 See the below links for more information:
 * [Customizing at the edge with Lambda@Edge](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/lambda-at-the-edge.html)
 
+
+## Updates
+Follow the below steps to publish updates to your static website hosted on S3 and CloudFront:
+1. [Generate Static Site Content using Hugo](#generate-static-site-content-using-hugo)
+2. [Publish to S3](#publish-to-s3)
+3. [Update CloudFront Distribution](#update-cloudfront-distribution)
+
+### Generate Static Site Content using Hugo
+Run the following commands from the macOS terminal to generate the updated static website content in the `public/` subdirectory of the `jvincent-website` directory:   
+
+**NOTE:** Only content marked *non-draft* will be generated.
+
+{{< highlight bash "linenos=table,hl_lines=" >}}
+jvincent$ cd jvincent-website
+jvincent$ hugo   
+
+Start building sites … 
+hugo v0.93.1+extended darwin/amd64 BuildDate=unknown
+
+                   | EN   
+-------------------+------
+  Pages            |  20  
+  Paginator pages  |   0  
+  Non-page files   |   0  
+  Static files     | 192  
+  Processed images |   0  
+  Aliases          |   6  
+  Sitemaps         |   1  
+  Cleaned          |   0  
+
+Total in 113 ms
+
+jvincent$ {{< /highlight >}}
+
+
+### Publish to S3
+This will synchronise the contents of your local `public/` directory with the `main/` folder in the `jeremyvincent-production-us-east-1-jvincent-website` S3 bucket.
+
+1. Run `aws s3 sync public/ s3://jeremyvincent-production-us-east-1-jvincent-website/main/ --size-only --exclude ".DS_Store" --exclude "*/.DS_Store" --delete --acl bucket-owner-full-control --dryrun` to perform a **"dry-run"**; this verifies what changes would have been made to the S3 bucket but *does **NOT** make any changes*:
+	
+	{{< highlight bash "linenos=table,hl_lines=">}}
+jvincent$ aws s3 sync public/ s3://jeremyvincent-production-us-east-1-jvincent-website/main/ --size-only --exclude ".DS_Store" --exclude "*/.DS_Store" --delete --acl bucket-owner-full-control --dryrun
+
+(dryrun) upload: public/2020/04/my-first-post/index.html to s3://jeremyvincent-production-us-east-1-jvincent-website/main/2020/04/my-first-post/index.html
+(dryrun) upload: public/2020/09/publishing-a-static-site-with-aws/index.html to s3://jeremyvincent-production-us-east-1-jvincent-website/main/2020/09/publishing-a-static-site-with-aws/index.html
+(dryrun) upload: public/404.html to s3://jeremyvincent-production-us-east-1-jvincent-website/main/404.html
+(dryrun) delete: s3://jeremyvincent-production-us-east-1-jvincent-website/main/categories/aws/index.html
+(dryrun) delete: s3://jeremyvincent-production-us-east-1-jvincent-website/main/categories/aws/index.xml
+(dryrun) delete: s3://jeremyvincent-production-us-east-1-jvincent-website/main/categories/aws/page/1/index.html
+(dryrun) delete: s3://jeremyvincent-production-us-east-1-jvincent-website/main/categories/hugo/index.html
+(dryrun) delete: s3://jeremyvincent-production-us-east-1-jvincent-website/main/categories/hugo/index.xml
+(dryrun) delete: s3://jeremyvincent-production-us-east-1-jvincent-website/main/categories/hugo/page/1/index.html
+(dryrun) upload: public/categories/index.html to s3://jeremyvincent-production-us-east-1-jvincent-website/main/categories/index.html
+(dryrun) upload: public/categories/index.xml to s3://jeremyvincent-production-us-east-1-jvincent-website/main/categories/index.xml
+(dryrun) delete: s3://jeremyvincent-production-us-east-1-jvincent-website/main/categories/website/index.html
+(dryrun) delete: s3://jeremyvincent-production-us-east-1-jvincent-website/main/categories/website/index.xml
+(dryrun) delete: s3://jeremyvincent-production-us-east-1-jvincent-website/main/categories/website/page/1/index.html
+(dryrun) upload: public/favicon.ico to s3://jeremyvincent-production-us-east-1-jvincent-website/main/favicon.ico
+(dryrun) upload: public/index.html to s3://jeremyvincent-production-us-east-1-jvincent-website/main/index.html
+(dryrun) upload: public/index.xml to s3://jeremyvincent-production-us-east-1-jvincent-website/main/index.xml
+(dryrun) upload: public/pages/about/index.html to s3://jeremyvincent-production-us-east-1-jvincent-website/main/pages/about/index.html
+(dryrun) upload: public/pages/index.html to s3://jeremyvincent-production-us-east-1-jvincent-website/main/pages/index.html
+(dryrun) upload: public/pages/index.xml to s3://jeremyvincent-production-us-east-1-jvincent-website/main/pages/index.xml
+(dryrun) upload: public/posts/index.html to s3://jeremyvincent-production-us-east-1-jvincent-website/main/posts/index.html
+(dryrun) upload: public/posts/index.xml to s3://jeremyvincent-production-us-east-1-jvincent-website/main/posts/index.xml
+(dryrun) upload: public/resources/publishing-a-static-site-with-aws/new-acm-jeremyvincent.com.txt to s3://jeremyvincent-production-us-east-1-jvincent-website/main/resources/publishing-a-static-site-with-aws/new-acm-jeremyvincent.com.txt
+(dryrun) upload: public/sitemap.xml to s3://jeremyvincent-production-us-east-1-jvincent-website/main/sitemap.xml
+(dryrun) delete: s3://jeremyvincent-production-us-east-1-jvincent-website/main/syntax.css
+(dryrun) upload: public/tags/aws/index.html to s3://jeremyvincent-production-us-east-1-jvincent-website/main/tags/aws/index.html
+(dryrun) upload: public/tags/aws/index.xml to s3://jeremyvincent-production-us-east-1-jvincent-website/main/tags/aws/index.xml
+(dryrun) upload: public/tags/aws/page/1/index.html to s3://jeremyvincent-production-us-east-1-jvincent-website/main/tags/aws/page/1/index.html
+(dryrun) upload: public/tags/hugo/index.html to s3://jeremyvincent-production-us-east-1-jvincent-website/main/tags/hugo/index.html
+(dryrun) upload: public/tags/hugo/index.xml to s3://jeremyvincent-production-us-east-1-jvincent-website/main/tags/hugo/index.xml
+(dryrun) upload: public/tags/index.html to s3://jeremyvincent-production-us-east-1-jvincent-website/main/tags/index.html
+(dryrun) upload: public/tags/index.xml to s3://jeremyvincent-production-us-east-1-jvincent-website/main/tags/index.xml
+(dryrun) upload: public/tags/website/index.html to s3://jeremyvincent-production-us-east-1-jvincent-website/main/tags/website/index.html
+(dryrun) upload: public/tags/website/index.xml to s3://jeremyvincent-production-us-east-1-jvincent-website/main/tags/website/index.xml
+
+jvincent$ {{< /highlight >}}
+
+	Review the changes that would have been made had the **aws s3 sync** command not been running in dry-run mode, to ensure they match with changes you have made to the website content.  
+
+1. Run `aws s3 sync public/ s3://jeremyvincent-production-us-east-1-jvincent-website/main/ --size-only --exclude ".DS_Store" --exclude "*/.DS_Store" --delete --acl bucket-owner-full-control` to perform the **LIVE** update to the S3 bucket:
+	
+	{{< highlight bash "linenos=table,hl_lines=" >}}
+jvincent$ aws s3 sync public/ s3://jeremyvincent-production-us-east-1-jvincent-website/main/ --size-only --exclude ".DS_Store" --exclude "*/.DS_Store" --delete --acl bucket-owner-full-control
+
+delete: s3://jeremyvincent-production-us-east-1-jvincent-website/main/categories/hugo/index.xml
+delete: s3://jeremyvincent-production-us-east-1-jvincent-website/main/categories/aws/page/1/index.html
+delete: s3://jeremyvincent-production-us-east-1-jvincent-website/main/categories/aws/index.html
+delete: s3://jeremyvincent-production-us-east-1-jvincent-website/main/categories/aws/index.xml
+delete: s3://jeremyvincent-production-us-east-1-jvincent-website/main/categories/hugo/page/1/index.html
+upload: public/2020/04/my-first-post/index.html to s3://jeremyvincent-production-us-east-1-jvincent-website/main/2020/04/my-first-post/index.html
+delete: s3://jeremyvincent-production-us-east-1-jvincent-website/main/categories/hugo/index.html
+delete: s3://jeremyvincent-production-us-east-1-jvincent-website/main/categories/website/index.html
+delete: s3://jeremyvincent-production-us-east-1-jvincent-website/main/categories/website/page/1/index.html
+delete: s3://jeremyvincent-production-us-east-1-jvincent-website/main/categories/website/index.xml
+upload: public/404.html to s3://jeremyvincent-production-us-east-1-jvincent-website/main/404.html
+upload: public/categories/index.xml to s3://jeremyvincent-production-us-east-1-jvincent-website/main/categories/index.xml
+upload: public/index.xml to s3://jeremyvincent-production-us-east-1-jvincent-website/main/index.xml
+upload: public/categories/index.html to s3://jeremyvincent-production-us-east-1-jvincent-website/main/categories/index.html
+upload: public/favicon.ico to s3://jeremyvincent-production-us-east-1-jvincent-website/main/favicon.ico
+upload: public/index.html to s3://jeremyvincent-production-us-east-1-jvincent-website/main/index.html
+upload: public/pages/index.xml to s3://jeremyvincent-production-us-east-1-jvincent-website/main/pages/index.xml
+upload: public/posts/index.xml to s3://jeremyvincent-production-us-east-1-jvincent-website/main/posts/index.xml
+upload: public/pages/about/index.html to s3://jeremyvincent-production-us-east-1-jvincent-website/main/pages/about/index.html
+delete: s3://jeremyvincent-production-us-east-1-jvincent-website/main/syntax.css
+upload: public/pages/index.html to s3://jeremyvincent-production-us-east-1-jvincent-website/main/pages/index.html
+upload: public/resources/publishing-a-static-site-with-aws/new-acm-jeremyvincent.com.txt to s3://jeremyvincent-production-us-east-1-jvincent-website/main/resources/publishing-a-static-site-with-aws/new-acm-jeremyvincent.com.txt
+upload: public/sitemap.xml to s3://jeremyvincent-production-us-east-1-jvincent-website/main/sitemap.xml
+upload: public/posts/index.html to s3://jeremyvincent-production-us-east-1-jvincent-website/main/posts/index.html
+upload: public/tags/aws/index.html to s3://jeremyvincent-production-us-east-1-jvincent-website/main/tags/aws/index.html
+upload: public/tags/aws/index.xml to s3://jeremyvincent-production-us-east-1-jvincent-website/main/tags/aws/index.xml
+upload: public/tags/aws/page/1/index.html to s3://jeremyvincent-production-us-east-1-jvincent-website/main/tags/aws/page/1/index.html
+upload: public/tags/hugo/index.xml to s3://jeremyvincent-production-us-east-1-jvincent-website/main/tags/hugo/index.xml
+upload: public/tags/index.xml to s3://jeremyvincent-production-us-east-1-jvincent-website/main/tags/index.xml
+upload: public/tags/website/index.xml to s3://jeremyvincent-production-us-east-1-jvincent-website/main/tags/website/index.xml
+upload: public/tags/hugo/index.html to s3://jeremyvincent-production-us-east-1-jvincent-website/main/tags/hugo/index.html
+upload: public/tags/index.html to s3://jeremyvincent-production-us-east-1-jvincent-website/main/tags/index.html
+upload: public/tags/website/index.html to s3://jeremyvincent-production-us-east-1-jvincent-website/main/tags/website/index.html
+upload: public/2020/09/publishing-a-static-site-with-aws/index.html to s3://jeremyvincent-production-us-east-1-jvincent-website/main/2020/09/publishing-a-static-site-with-aws/index.html
+
+jvincent$ {{< /highlight >}}
+
+### Update CloudFront Distribution
+
+**NOTE:** This is only required if you have configured your site content to be cached for a long period of time; either directly by setting cache-control headers on the uploaded S3 objects or via CloudFront caching behaviours.  
+
+This will invalidate the root page and various page listings on your CloudFront Distribution serving your static website. See [Invalidating files](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Invalidation.html) for more information.  
+
+1. Run `aws cloudfront create-invalidation --distribution-id E8XLUV8WNKTOL --paths /index.html / "/pages/*" "/posts/*" "/tags/*" "/categories/*" "/2020/*"` to invalidate the root page and page listings on your CloudFront Distribution:
+	
+	{{< highlight bash "linenos=table,hl_lines=6">}}
+jvincent$ aws cloudfront create-invalidation --distribution-id E8XLUV8WNKTOL --paths /index.html / "/pages/*" "/posts/*" "/tags/*" "/categories/*" "/2020/*"
+
+{
+    "Location": "https://cloudfront.amazonaws.com/2020-05-31/distribution/E8XLUV8WNKTOL/invalidation/I6MYTHAWI0YXG",
+    "Invalidation": {
+        "Id": "I6MYTHAWI0YXG",
+        "Status": "InProgress",
+        "CreateTime": "2022-03-05T04:10:53.809000+00:00",
+        "InvalidationBatch": {
+            "Paths": {
+                "Quantity": 6,
+                "Items": [
+                    "/pages/*",
+                    "/2020/*",
+                    "/posts/*",
+                    "/index.html",
+                    "/tags/*",
+                    "/"
+                ]
+            },
+            "CallerReference": "cli-1646453450-342376"
+        }
+    }
+}
+
+jvincent$ {{< /highlight >}}
+
+Once the invalidation is complete, all your updated website content will now be served via CloudFront.
+
+**NOTE:** Web browsers may still show outdated site content due to Web browsers and/or corporate proxies caching your content at the time when the content was previously requested. This caching will be based on your object and/or CloudFront cache settings at the time of the request.
+
