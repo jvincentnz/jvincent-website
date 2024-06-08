@@ -79,6 +79,12 @@ enableGitInfo = true
     weight = 2
 
 [[menu.main]]
+    parent = "resources"
+    name = "index.js"
+    url = "resources/publishing-a-static-site-with-aws/index.js"
+    weight = 3
+
+[[menu.main]]
     name = "Tags"
     url = "tags"
     weight = 3
